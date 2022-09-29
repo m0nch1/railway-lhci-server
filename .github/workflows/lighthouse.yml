@@ -1,0 +1,32 @@
+name: lighthouse-ci
+on: workflow_dispatch
+
+jobs:
+  lhci:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Set current dateTime as env variable
+        env:
+          TZ: 'Asia/Tokyo' 
+        run: echo "CURRENT_DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Export env variables
+        run: |
+          export LHCI_BUILD_CONTEXT__CURRENT_HASH=$(node -e "new Date().getTime().toString(16).split('').reverse().join('')")
+          export LHCI_BUILD_CONTEXT__COMMIT_TIME=$(date --iso-8601=seconds)
+          export LHCI_BUILD_CONTEXT__CURRENT_BRANCH=master
+          export LHCI_BUILD_CONTEXT__COMMIT_MESSAGE=${{ env.CURRENT_DATE }}
+          export LHCI_BUILD_CONTEXT__AUTHOR="m0nch1 <m0nch1@st.inc>"
+          export LHCI_BUILD_CONTEXT__AVATAR_URL="https://avatars.githubusercontent.com/u/5035741?s=200&v=4"
+
+      - name: run Lighthouse
+        run: |
+          npm install -g @lhci/cli@0.9.x
+          lhci autorun
