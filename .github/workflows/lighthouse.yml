@@ -25,6 +25,7 @@ jobs:
           LHCI_BUILD_CONTEXT__COMMIT_MESSAGE: ${{ env.CURRENT_DATE }}
           LHCI_BUILD_CONTEXT__AUTHOR: "m0nch1 <m0nch1@st.inc>"
           LHCI_BUILD_CONTEXT__AVATAR_URL: "https://avatars.githubusercontent.com/u/5035741?s=200&v=4"
+        run: echo ${{ env.LHCI_BUILD_CONTEXT__COMMIT_MESSAGE }}
 
       - name: run Lighthouse
         run: |
