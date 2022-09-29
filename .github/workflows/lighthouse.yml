@@ -1,5 +1,10 @@
 name: lighthouse-ci
-on: workflow_dispatch
+
+on:
+  # UTC なので JST は +9 時間
+  schedule:
+    - cron:  "0 0 * * *"
+  workflow_dispatch:
 
 jobs:
   lhci:
