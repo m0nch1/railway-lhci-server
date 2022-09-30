@@ -9,6 +9,7 @@ module.exports = {
     upload: {
       target: 'lhci',
       serverBaseUrl: 'https://railway-lhci-server-production.up.railway.app',
+      ignoreDuplicateBuildFailure: true,
       token: '02ba037d-efd8-4f64-a3c7-e03cf17e14c7',
     },
   },
