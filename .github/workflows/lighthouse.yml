@@ -34,4 +34,4 @@ jobs:
       - name: run Lighthouse
         run: |
           npm install -g @lhci/cli@0.9.x
-          lhci autorun
+          lhci collect --config=./lighthouserc.js
