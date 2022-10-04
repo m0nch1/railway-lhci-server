@@ -34,5 +34,4 @@ jobs:
       - name: run Lighthouse
         run: |
           npm install -g @lhci/cli@0.9.x
-          lhci collect --config=./lighthouserc.js
-          lhci upload --config=./lighthouserc.js
+          LHCI_BUILD_CONTEXT__CURRENT_HASH=$GITHUB_RUN_ID lhci autorun --config=./lighthouserc.js
