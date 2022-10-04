@@ -35,3 +35,4 @@ jobs:
         run: |
           npm install -g @lhci/cli@0.9.x
           lhci collect --config=./lighthouserc.js
+          lhci upload --config=./lighthouserc.js
